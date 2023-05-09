@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book API</title>
+</head>
+<body>
+    <h1>Book API</h1>
+    <table id="books">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Publisher</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/books/',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $.each(data, function(index, book) {
+                        $('#books tbody').append('<tr><td>' + book.title + '</td><td>' + book.author + '</td><td>' + book.isbn + '</td><td>' + book.publisher + '</td></tr>');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
